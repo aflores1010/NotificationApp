@@ -1,14 +1,41 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Ionic Blank
+      Notifications App
     </ion-title>
+
+    <ion-buttons slot="end" >
+      <ion-button (click)="deleteNotifications()" color="danger">
+        <ion-icon slot="icon-only" name="trash"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+  <ion-list>
+
+      <ion-list-header>
+          <ion-label>User ID</ion-label>
+        </ion-list-header>
+      
+      <ion-item>
+        <ion-label>{{notificationService.userId}}</ion-label>
+      </ion-item>
+
+    <ion-list-header>
+      <ion-label>Notifications</ion-label>
+    </ion-list-header>
+
+    <ion-item *ngFor="let notification of messages">
+      <ion-label>
+
+        <h3>{{notification.title}}</h3>
+        <p>{{notification.body}}</p>
+        <p>{{notification.additionalData | json}}</p>
+
+      </ion-label>
+    </ion-item>
+
+  </ion-list>
 </ion-content>
